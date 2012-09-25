@@ -28,7 +28,11 @@ Bundle 'molokai'
 "{{{ General Settings
 filetype plugin indent on
 colorscheme molokai
-set guifont=Ubuntu\ Mono\ 10
+if has("mac")
+	set guifont=Monaco:h10
+else
+	set guifont=Ubuntu\ Mono\ 10
+endif
 set guioptions-=T
 syntax on
 "}}}
