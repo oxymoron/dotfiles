@@ -14,6 +14,13 @@ call vundle#rc()
 "}}}
 "{{{ Bundles
 
+" Unite plugin
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
+
+" Cool status bar
+Bundle 'bling/vim-airline'
+
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
@@ -44,10 +51,45 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " }}}
 "{{{ Folding
 set foldmethod=marker
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
 "}}}
 "{{{ NERDTree
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
 " }}}
+"{{{ Unite Plugin Settings
+
+" Automatic insert mode
+let g:unite_enable_start_insert = 1
+
+" Buttom right corner
+let g:unite_split_rule = "botright"
+
+" Avoid status line overriding
+let g:unite_force_overwrite_statusline = 0
+
+" Window size
+let g:unite_winheight = 10
+
+" Nice arrows
+let g:unite_candidate_icon="▷"
+
+noremap <leader>f :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+"}}}
+"{{{ Status Line
+
+let g:airline_theme='dark'
+
+let g:airline_enable_fugitive=1
+let g:airline_enable_syntastic=1
+let g:airline_enable_bufferline=1
+
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+
+let g:airline_section_c = '%t'
+"}}}
